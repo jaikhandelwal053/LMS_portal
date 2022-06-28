@@ -1,8 +1,8 @@
 # LMS_portal
 ## Description of project
--As a user able to see the list of courses
--As a user able to the enroll for a course
--As a user able to buy the course
+As a user able to see the list of courses.
+As a user able to the enroll for a course.
+As a user able to buy the course
 -As a user able to view the details of course
 -As a user able to bookmark the course
 -As a user able to save for later
