@@ -6,10 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "cart")
@@ -18,14 +17,12 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@OneToMany(mappedBy = "cart")
+	@ManyToMany
 	private List<Course> courses;
-
 	public Cart() {
-		super();
-		// TODO Auto-generated constructor stub
+	
 	}
-
+	
 	public Cart(long id, List<Course> courses) {
 		super();
 		this.id = id;
@@ -35,18 +32,15 @@ public class Cart {
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
-@JsonManagedReference
 	public List<Course> getCourses() {
 		return courses;
 	}
-
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
-	}  
-	
+	}
+
 	
 }

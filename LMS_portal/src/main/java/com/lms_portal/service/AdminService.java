@@ -18,11 +18,11 @@ public class AdminService {
 	@Autowired
 	AdminRepo adminrepo;
 	
-	@Autowired
-	UserRepo userrepo;
-	
-	@Autowired
-	CourseRepo courserepo;
+//	@Autowired
+//	UserRepo userrepo;
+//	
+//	@Autowired
+//	CourseRepo courserepo;
 	
 	
 //-----------------------Admin --------------------------------------
@@ -32,33 +32,33 @@ public class AdminService {
 	}
 //-----------------------User data-----------------------------------
 	
-	public List<User> allUser(){
-		return userrepo.findAll();
-	}
-	public List<User> postUserData(@RequestBody User u){
-		userrepo.save(u);
-		return userrepo.findAll();
-		
-	}
-	public List<User> putUserData(@RequestBody User u){
-		userrepo.save(u);
-		return userrepo.findAll();
-		
-	}
+//	public List<User> allUser(){
+//		return userrepo.findAll();
+//	}
+//	public List<User> postUserData(@RequestBody User u){
+//		userrepo.save(u);
+//		return userrepo.findAll();
+//		
+//	}
+//	public List<User> putUserData(@RequestBody User u){
+//		userrepo.save(u);
+//		return userrepo.findAll();
+//		
+//	}
 	
 //---------------------Course Operation----------------------------
 	
-	public List<Course> allCourse(){
-		return courserepo.findAll();
-	}
-	
-	public List<Course> postCourse(@RequestBody Course courses){
-		courserepo.save(courses);
-		return courserepo.findAll();
-	}
-	public List<Course> putCourse(@RequestBody Course courses){
-		courserepo.save(courses);
-		return courserepo.findAll();
-	}
+//	public List<Course> allCourse(){
+//		return courserepo.findAll();
+//	}
+//	
+//	public List<Course> postCourse(@RequestBody Course courses){
+//		courserepo.save(courses);
+//		return courserepo.findAll();
+//	}
+//	public List<Course> putCourse(@RequestBody Course courses){
+//		courserepo.save(courses);
+//		return courserepo.findAll();
+//	}
 
 }

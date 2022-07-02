@@ -1,10 +1,13 @@
 package com.lms_portal.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -31,17 +34,13 @@ public class Course {
 	
 	@ManyToOne
 	Admin admin;
-	
-	@ManyToOne
-	Cart cart;
 
 	public Course() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Course(long id, String course_name, int time_duration, String description, int price, Admin admin,
-			Cart cart) {
+	public Course(long id, String course_name, int time_duration, String description, int price, Admin admin) {
 		super();
 		this.id = id;
 		this.course_name = course_name;
@@ -49,7 +48,6 @@ public class Course {
 		this.description = description;
 		this.price = price;
 		this.admin = admin;
-		this.cart = cart;
 	}
 
 	public long getId() {
@@ -99,14 +97,7 @@ public class Course {
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
 	}
-@JsonBackReference
-	public Cart getCart() {
-		return cart;
-	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
 
 
 
