@@ -7,5 +7,6 @@ import com.lms_portal.entity.User;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long>{
+	User findById(long id);
 
 }

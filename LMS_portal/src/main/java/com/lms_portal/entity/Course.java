@@ -17,14 +17,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "courses")
 public class Course {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column
 	private String course_name;
 	
 	@Column
-	private int time_duration;
+	private String time_duration;
 	
 	@Column
 	private String description;
@@ -40,7 +40,7 @@ public class Course {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Course(long id, String course_name, int time_duration, String description, int price, Admin admin) {
+public Course(long id, String course_name, String time_duration, String description, int price, Admin admin) {
 		super();
 		this.id = id;
 		this.course_name = course_name;
@@ -50,45 +50,46 @@ public class Course {
 		this.admin = admin;
 	}
 
-	public long getId() {
-		return id;
-	}
+public long getId() {
+	return id;
+}
 
-	public void setId(long id) {
-		this.id = id;
-	}
+public void setId(long id) {
+	this.id = id;
+}
 
-	public String getCourse_name() {
-		return course_name;
-	}
+public String getCourse_name() {
+	return course_name;
+}
 
-	public void setCourse_name(String course_name) {
-		this.course_name = course_name;
-	}
+public void setCourse_name(String course_name) {
+	this.course_name = course_name;
+}
 
-	public int getTime_duration() {
-		return time_duration;
-	}
+public String getTime_duration() {
+	return time_duration;
+}
 
-	public void setTime_duration(int time_duration) {
-		this.time_duration = time_duration;
-	}
+public void setTime_duration(String time_duration) {
+	this.time_duration = time_duration;
+}
 
-	public String getDescription() {
-		return description;
-	}
+public String getDescription() {
+	return description;
+}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+public void setDescription(String description) {
+	this.description = description;
+}
 
-	public int getPrice() {
-		return price;
-	}
+public int getPrice() {
+	return price;
+}
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
+public void setPrice(int price) {
+	this.price = price;
+}
+
 @JsonBackReference
 	public Admin getAdmin() {
 		return admin;
