@@ -25,7 +25,6 @@ public class AdminService {
 	
 	public List<Admin> get() {
 		return adminrepo.findAll();
-		
 	}
 	
 

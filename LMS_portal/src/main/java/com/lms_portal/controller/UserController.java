@@ -36,7 +36,7 @@ public class UserController {
 //	Get Order LIst
 		@GetMapping("/{id}/enrolled_courses")
 		public List<Course> getEnrolled(@PathVariable Long id){
-			return userService.getEnrolledCourses(id);
+			return courseService.getEnrolledCourses(id);
 		}
 	
 		
@@ -81,6 +81,13 @@ public class UserController {
 		return userService.removeCartCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
 	}
 	
+	
+//  Buy all cart courses
+	@PutMapping("/{id}/cart/buy")
+	public List<User> buyAllCourse(@PathVariable Long id){
+		return userService.buyAllCourse(id);
+	}
+		
 }
 	
 

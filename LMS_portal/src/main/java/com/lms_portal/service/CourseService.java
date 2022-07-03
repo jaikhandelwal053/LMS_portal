@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lms_portal.entity.Course;
+import com.lms_portal.entity.User;
 import com.lms_portal.repo.CourseRepo;
+import com.lms_portal.repo.UserRepo;
 @Service
 public class CourseService {
 	@Autowired
 	CourseRepo courserepo;
+	
+	@Autowired
+	UserRepo userrepo;
 	
 	public List<Course> allCourse(){
 		return courserepo.findAll();
@@ -43,7 +48,10 @@ public class CourseService {
 		return  courserepo.findAll();
 	}
 	
-	
+	public List<Course> getEnrolledCourses(long id){
+		User u = userrepo.findById(id);
+		return u.getEnroll();
+	}
 	
 
 
