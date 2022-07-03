@@ -52,6 +52,12 @@ public class CourseService {
 		User u = userrepo.findById(id);
 		return u.getEnroll();
 	}
+
+
+	public List<Course> deleteCourse(@PathVariable Long id) {
+		courserepo.deleteById(id);
+		return courserepo.findAll();
+	}
 	
 
 

@@ -26,7 +26,21 @@ public class UserService {
 		return userrepo.findAll();
 	}
 	
+	public List<User> putUserData(@RequestBody User u){
+		userrepo.save(u);
+		return userrepo.findAll();
+	}
 	
+	public List<User> postUserData(@RequestBody User u){
+		userrepo.save(u);
+		return userrepo.findAll();
+	}
+	
+	public List<User> deactiveUser(@PathVariable Long id){
+		userrepo.deleteById(id);
+		return userrepo.findAll();
+	}
+
 
 	
 	public List<User> cartCourse(long user_id, long courses_id){
@@ -34,17 +48,27 @@ public class UserService {
 		Course c = courserepo.findById(courses_id);
 		List<Course> temp = u.getCart();
 		temp.add(c);
-		u.setCart(temp);
 		userrepo.save(u);
 		return userrepo.findAll();	
 	}
+	
+	public List<User> removeCartCourse(long user_id, long courses_id){
+
+		User u = userrepo.findById(user_id);
+		Course c = courserepo.findById(courses_id);
+		List<Course> temp = u.getCart();
+		temp.remove(c);
+		userrepo.save(u);
+		return userrepo.findAll();	
+	}
+	
+	
 	
 	public List<User> enrollCourse(long user_id, long courses_id){
 		User u = userrepo.findById(user_id);
 		Course c = courserepo.findById(courses_id);
 		List<Course> temp = u.getEnroll();
 		temp.add(c);
-		u.setEnroll(temp);
 		userrepo.save(u);
 		return userrepo.findAll();	
 	}
@@ -56,39 +80,10 @@ public class UserService {
 		Course c = courserepo.findById(courses_id);
 		List<Course> temp = u.getSave_courses();
 		temp.add(c);
-		u.setSave_courses(temp);
 		userrepo.save(u);
 		return userrepo.findAll();	
 	}
 
-//	
-//	public List<User> removeCartCourse(@PathVariable Long id){
-//		userrepo.deleteById(id);
-//		return userrepo.findAll();
-//	}
-	
-	public List<User> putUserData(@RequestBody User u){
-		userrepo.save(u);
-		return userrepo.findAll();
-	}
-
-	
-	public List<User> removeCartCourse(long user_id, long courses_id){
-
-		User u = userrepo.findById(user_id);
-		Course c = courserepo.findById(courses_id);
-		List<Course> temp = u.getCart();
-		temp.remove(c);
-		u.setCart(temp);
-		userrepo.save(u);
-		return userrepo.findAll();	
-	}
-	
-	public List<User> deactiveUser(@PathVariable Long id){
-		userrepo.deleteById(id);
-		return userrepo.findAll();
-	}
-	
 	
 	
 	public List<User> buyAllCourse(long user_id){
@@ -97,13 +92,26 @@ public class UserService {
 		List<Course> temp_cart = u.getCart();
 		List<Course> temp = u.getEnroll();
 		temp.addAll(temp_cart);
-//		u.setEnroll(temp);
-	
-		
+
 		temp_cart.clear();
-//		u.setCart(temp_cart);
 		userrepo.save(u);
 		return userrepo.findAll();	
 	}
+
+	
+//	public List<User> removeCartCourse(@PathVariable Long id){
+//		userrepo.deleteById(id);
+//		return userrepo.findAll();
+//	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+
 
 }

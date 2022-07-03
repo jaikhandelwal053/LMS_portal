@@ -22,10 +22,17 @@ public class AdminService {
 	@Autowired
 	CourseRepo courserepo;
 	
-	
-	public List<Admin> get() {
+//	public List<Admin> getAdminData() {
+//		return adminrepo.findAll();
+//	}
+
+
+	public List<Admin> postAdminData(@RequestBody Admin a) {
+		adminrepo.save(a);
 		return adminrepo.findAll();
 	}
+	
+	
 	
 
 

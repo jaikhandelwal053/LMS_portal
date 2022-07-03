@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,34 +28,68 @@ public class UserController {
 	@Autowired
 	CourseService courseService;
 	
+//	----------------------------- USER --------------------------------
+	@GetMapping("/")
+	public List<User> findallUser(){
+		return userService.allUser();
+	}
+	
+	@PostMapping("/addnew")
+	public List<User> postuser(@RequestBody User u){
+		return userService.postUserData(u);
+	}
+	
+//	----------------------------- COURSES --------------------------------
 //  Get all Courses
 	@GetMapping("/courses")
 	public List<Course> getall(){
 		return courseService.allCourse();
 	}
 	
+//	get course by ID
+	@GetMapping("/courses/{id}")
+	public ResponseEntity<Course> getcourse(@PathVariable long id ){
+		return courseService.getbyid(id);
+	}
+	
+	
+//	-----------------------------  ENROLL COURSE  ----------------------------------
+	
 //	Get Order LIst
 		@GetMapping("/{id}/enrolled_courses")
 		public List<Course> getEnrolled(@PathVariable Long id){
 			return courseService.getEnrolledCourses(id);
 		}
-	
 		
-//add to cart 
-		@PostMapping("/cart/add")
+//	Enroll courses
+		@PostMapping("/enroll_courses")
+		public List<User> postdata(@RequestBody JsonNode requestBody){
+			return userService.enrollCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
+		}
+		
+		
+//		-----------------------------  CART ----------------------------------
+//	add to cart 
+		@PostMapping("/cart")
 		public List<User> postCart(@RequestBody JsonNode requestBody){
 
 			return userService.cartCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
 		}
 		
+//	Delete Course from Cart
+		@DeleteMapping("/cart/removecourses")
+		public List<User> removeCart(@RequestBody JsonNode requestBody){
 
-//Enroll courses
-	@PostMapping("/enroll_courses")
-	public List<User> postdata(@RequestBody JsonNode requestBody){
-		return userService.enrollCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
-	}
+			return userService.removeCartCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
+		}
+
+//  Buy all cart courses
+		@PutMapping("/{id}/cart/buy")
+		public List<User> buyAllCourse(@PathVariable Long id){
+			return userService.buyAllCourse(id);
+		}
 	
-	
+//		-----------------------------  SAVE COURSE  ----------------------------------
 //Save for later courses
 		@PostMapping("/save_course")
 		public List<User> saveCourse(@RequestBody JsonNode requestBody){
@@ -68,25 +103,12 @@ public class UserController {
 //		return userService.allUser();
 //	}
 		
-//	------------------------view all user-----------------------
-	@GetMapping("/")
-	public List<User> findallUser(){
-		return userService.allUser();
-	}
-	
-//	Delete Course from Cart
-	@DeleteMapping("/cart/courses")
-	public List<User> removeCart(@RequestBody JsonNode requestBody){
 
-		return userService.removeCartCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
-	}
+	
+
 	
 	
-//  Buy all cart courses
-	@PutMapping("/{id}/cart/buy")
-	public List<User> buyAllCourse(@PathVariable Long id){
-		return userService.buyAllCourse(id);
-	}
+
 		
 }
 	

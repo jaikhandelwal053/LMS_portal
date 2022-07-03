@@ -33,10 +33,5 @@ public class CourseController {
 	}
 
 	
-//	--------------------------Edit course detail---------------------
-	@PutMapping("/")
-	public List<Course> updateCourse(@RequestBody Course courses){
-		return courseService.putCourse(courses);
-	}
 	
 }
