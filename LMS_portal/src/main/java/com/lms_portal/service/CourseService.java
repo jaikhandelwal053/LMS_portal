@@ -1,13 +1,14 @@
 package com.lms_portal.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lms_portal.entity.Course;
 import com.lms_portal.entity.User;
@@ -58,7 +59,17 @@ public class CourseService {
 		courserepo.deleteById(id);
 		return courserepo.findAll();
 	}
-	
 
+	public List<Course> getCourseByName(@RequestParam String courseName){
+		List<Course> listcourse = courserepo.findByNameCourse(courseName);
+		return listcourse;
+	}
+
+	public List<Course> getCourseByPriceRange(@RequestParam Double lrange,@RequestParam Double hrange) {
+		List<Course> listcourserange = courserepo.findByRange(lrange,hrange);
+		return listcourserange;
+	}
+
+     
 
 }

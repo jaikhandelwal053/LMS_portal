@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lms_portal.entity.Course;
@@ -40,6 +41,7 @@ public class UserController {
 	}
 	
 //	----------------------------- COURSES --------------------------------
+	
 //  Get all Courses
 	@GetMapping("/courses")
 	public List<Course> getall(){
@@ -52,6 +54,12 @@ public class UserController {
 		return courseService.getbyid(id);
 	}
 	
+//	get course by Course Name
+	@GetMapping("/courses/search")
+	public List<Course> search(@RequestParam String courseName){
+		return courseService.getCourseByName(courseName);
+	}
+	
 	
 //	-----------------------------  ENROLL COURSE  ----------------------------------
 	
@@ -62,24 +70,25 @@ public class UserController {
 		}
 		
 //	Enroll courses
-		@PostMapping("/enroll_courses")
+		@PostMapping("/enrollcourses")
 		public List<User> postdata(@RequestBody JsonNode requestBody){
 			return userService.enrollCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
 		}
 		
 		
 //		-----------------------------  CART ----------------------------------
-//	add to cart 
-		@PostMapping("/cart")
-		public List<User> postCart(@RequestBody JsonNode requestBody){
+		
 
+		
+//	add to cart 
+		@PostMapping("/addtocart")
+		public List<User> postCart(@RequestBody JsonNode requestBody){
 			return userService.cartCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
 		}
 		
 //	Delete Course from Cart
 		@DeleteMapping("/cart/removecourses")
 		public List<User> removeCart(@RequestBody JsonNode requestBody){
-
 			return userService.removeCartCourse(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
 		}
 
@@ -89,25 +98,16 @@ public class UserController {
 			return userService.buyAllCourse(id);
 		}
 	
+		
 //		-----------------------------  SAVE COURSE  ----------------------------------
+		
+
+		
 //Save for later courses
 		@PostMapping("/save_course")
 		public List<User> saveCourse(@RequestBody JsonNode requestBody){
 			return userService.saveforlater(requestBody.get("user_id").asLong(), requestBody.get("courses_id").asLong());
 		}
-
-		
-		
-//	@PutMapping("/enroll_courses")
-//	public List<User> update(@RequestBody User u){
-//		return userService.allUser();
-//	}
-		
-
-	
-
-	
-	
 
 		
 }

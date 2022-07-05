@@ -26,12 +26,14 @@ public class AdminService {
 //		return adminrepo.findAll();
 //	}
 
-
 	public List<Admin> postAdminData(@RequestBody Admin a) {
 		adminrepo.save(a);
 		return adminrepo.findAll();
 	}
-	
+	public List<Admin> updateAdminData(@RequestBody Admin a) {
+		adminrepo.save(a);
+		return adminrepo.findAll();
+	}
 	
 	
 

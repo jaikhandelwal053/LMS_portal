@@ -38,10 +38,15 @@ public class AdminController {
 //		return admin_serv.getAdminData();
 //	}
 	
-
-	@PostMapping("/addnew")
-	public List<Admin> postadmin(@RequestBody Admin a){
-		return admin_serv.postAdminData(a);
+//
+//	@PostMapping("/addnew")
+//	public List<Admin> postadmin(@RequestBody Admin a){
+//		return admin_serv.postAdminData(a);
+//	}
+	
+	@PostMapping("/update")
+	public List<Admin> putadmin(@RequestBody Admin a){
+		return admin_serv.updateAdminData(a);
 	}
 	
 //	------------------------------------   USER   ---------------------------------
@@ -66,7 +71,7 @@ public class AdminController {
 	}
 	
 //	-------------------------------------  COURSE ---------------------------------
-	@PostMapping("/courses/add")
+	@PostMapping("/courses/addnew")
 	public List<Course> addnewCourse(@RequestBody Course courses){
 		return courseService.postCourse(courses);
 	}

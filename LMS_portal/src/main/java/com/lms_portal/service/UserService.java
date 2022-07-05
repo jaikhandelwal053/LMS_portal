@@ -41,8 +41,6 @@ public class UserService {
 		return userrepo.findAll();
 	}
 
-
-	
 	public List<User> cartCourse(long user_id, long courses_id){
 		User u = userrepo.findById(user_id);
 		Course c = courserepo.findById(courses_id);
@@ -61,7 +59,6 @@ public class UserService {
 		userrepo.save(u);
 		return userrepo.findAll();	
 	}
-	
 	
 	
 	public List<User> enrollCourse(long user_id, long courses_id){
@@ -85,10 +82,8 @@ public class UserService {
 	}
 
 	
-	
 	public List<User> buyAllCourse(long user_id){
 		User u = userrepo.findById(user_id);
-//		Course c = courserepo.findById(courses_id);
 		List<Course> temp_cart = u.getCart();
 		List<Course> temp = u.getEnroll();
 		temp.addAll(temp_cart);
@@ -97,21 +92,6 @@ public class UserService {
 		userrepo.save(u);
 		return userrepo.findAll();	
 	}
-
-	
-//	public List<User> removeCartCourse(@PathVariable Long id){
-//		userrepo.deleteById(id);
-//		return userrepo.findAll();
-//	}
-	
-
-	
-	
-	
-	
-	
-	
-	
 
 
 }

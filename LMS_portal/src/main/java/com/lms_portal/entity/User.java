@@ -14,11 +14,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users", 
+uniqueConstraints = { 
+  @UniqueConstraint(columnNames = "email") 
+})
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +32,7 @@ public class User {
 	private String name;
 	
 	@Column
+//	@Email
 	private String email;
 	
 
