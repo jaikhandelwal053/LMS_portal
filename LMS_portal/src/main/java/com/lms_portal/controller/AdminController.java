@@ -39,10 +39,10 @@ public class AdminController {
 //	}
 	
 //
-//	@PostMapping("/addnew")
-//	public List<Admin> postadmin(@RequestBody Admin a){
-//		return admin_serv.postAdminData(a);
-//	}
+	@PostMapping("/addnew")
+	public List<Admin> postadmin(@RequestBody Admin a){
+		return admin_serv.postAdminData(a);
+	}
 	
 	@PostMapping("/update")
 	public List<Admin> putadmin(@RequestBody Admin a){
@@ -55,6 +55,11 @@ public class AdminController {
 		return userService.allUser();
 	}
 	
+	@GetMapping("/user/{id}")
+	public ResponseEntity<User> getuserbyId(@PathVariable long id ){
+		return userService.getbyid(id);
+	}
+	
 	@PostMapping("/user/addnew")
 	public List<User> postuser(@RequestBody User u){
 		return userService.postUserData(u);
@@ -65,12 +70,24 @@ public class AdminController {
 		return userService.putUserData(u);
 	}
 	
-	@DeleteMapping("/user/{id}/delete")
+	@DeleteMapping("/user/{id}/deactivat")
 	public List<User> deleteUser(@PathVariable Long id){
 		return userService.deactiveUser(id);
 	}
 	
 //	-------------------------------------  COURSE ---------------------------------
+	
+	@GetMapping("/courses")
+	public List<Course> getall(){
+		return courseService.allCourse();
+	}
+	
+	@GetMapping("/courses/{id}")
+	public ResponseEntity<Course> getcourse(@PathVariable long id ){
+		return courseService.getbyid(id);
+	}
+	
+	
 	@PostMapping("/courses/addnew")
 	public List<Course> addnewCourse(@RequestBody Course courses){
 		return courseService.postCourse(courses);

@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "5bd2ba22-f0b2-4b0e-92d0-3d21ed814f27",
+		"name": "LMS_portal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin able to add the course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"course_name\": \"Android Java Masterclass - Become an App Developer\",\r\n        \"time_duration\": \"15 Hour \",\r\n        \"description\": \"Improve your career options by learning Android app Development. Master Android Studio and build your first app today\",\r\n        \"video_link\": \"https://www.youtube.com/watch?v=qYYe_Cy7h0g\",\r\n        \"price\": 1599.0\r\n        \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/admin/courses/addnew"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin able to Edit the course and details",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 3,\r\n        \"course_name\": \"React.js\",\r\n        \"time_duration\": \" Hour\",\r\n        \"description\": \"Web frontend courses for become a MERN fullstack Devloper\",\r\n        \"video_link\": \"https://www.youtube.com/watch?v=RGKi6LSPDLU&t=651s\",\r\n        \"price\": 1999.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/admin/courses/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin able to delete the course",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "http://localhost:8080/admin/courses/6/delete"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin able to deactivate the user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/admin/user/2/deactivat"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User able to see the list of courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/user/courses/"
+					},
+					"response": []
+				},
+				{
+					"name": "User able to the enroll for a course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":1,\r\n    \"courses_id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/enrollcourses"
+					},
+					"response": []
+				},
+				{
+					"name": "User able to view the details of course",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/user/courses/2"
+					},
+					"response": []
+				},
+				{
+					"name": "user able to save for later",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":3,\r\n    \"courses_id\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/save_course"
+					},
+					"response": []
+				},
+				{
+					"name": "User able to add to cart Course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":1,\r\n    \"course_id\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/addtocart"
+					},
+					"response": []
+				},
+				{
+					"name": "User able to buy all the courses from the cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8080/user/3/cart/buy"
+					},
+					"response": []
+				},
+				{
+					"name": "User able to view all the order list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/user/1/enrolled_courses"
+					},
+					"response": []
+				},
+				{
+					"name": "User able to add  from the cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\":3,\r\n    \"courses_id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/addtocart"
+					},
+					"response": []
+				},
+				{
+					"name": "User able to remove from the cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"user_id\":1,\r\n     \"courses_id\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/cart/removecourses"
+					},
+					"response": []
+				},
+				{
+					"name": "Search course by enter course name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/courses/search?courseName=JS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"courses",
+								"search"
+							],
+							"query": [
+								{
+									"key": "courseName",
+									"value": "JS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter course by price range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/courses/range?low=500&high=1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"courses",
+								"range"
+							],
+							"query": [
+								{
+									"key": "low",
+									"value": "500"
+								},
+								{
+									"key": "high",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

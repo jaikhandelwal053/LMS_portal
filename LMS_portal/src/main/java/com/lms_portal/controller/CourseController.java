@@ -42,12 +42,12 @@ public class CourseController {
 //	}
 	
 	@GetMapping("/search")
-	public List<Course> searchByName(@RequestParam String courseName){
+	public ResponseEntity<List<Course>> searchByName(@RequestParam String courseName){
 		return courseService.getCourseByName(courseName);
 	}
 	@GetMapping("/range")
-	public List<Course> searchByRange(@RequestParam Double lrange, @RequestParam Double hrange){
-		return courseService.getCourseByPriceRange(lrange, hrange);
+	public ResponseEntity<List<Course>> searchByRange(@RequestParam Double low, @RequestParam Double high){
+		return courseService.getCourseByPriceRange(low, high);
 	}
 	
 }

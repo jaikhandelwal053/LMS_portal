@@ -30,15 +30,20 @@ public class UserController {
 	CourseService courseService;
 	
 //	----------------------------- USER --------------------------------
-	@GetMapping("/")
-	public List<User> findallUser(){
-		return userService.allUser();
+//	@GetMapping("/")
+//	public List<User> findallUser(){
+//		return userService.allUser();
+//	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getuserbyId(@PathVariable long id ){
+		return userService.getbyid(id);
 	}
 	
-	@PostMapping("/addnew")
-	public List<User> postuser(@RequestBody User u){
-		return userService.postUserData(u);
-	}
+//	@PostMapping("/addnew")
+//	public List<User> postuser(@RequestBody User u){
+//		return userService.postUserData(u);
+//	}
 	
 //	----------------------------- COURSES --------------------------------
 	
@@ -56,10 +61,15 @@ public class UserController {
 	
 //	get course by Course Name
 	@GetMapping("/courses/search")
-	public List<Course> search(@RequestParam String courseName){
+	public ResponseEntity<List<Course>> search(@RequestParam String courseName){
 		return courseService.getCourseByName(courseName);
 	}
 	
+//	get course by Course Price Range
+	@GetMapping("/courses/range")
+	public ResponseEntity<List<Course>> searchByRange(@RequestParam Double low, @RequestParam Double high){
+		return courseService.getCourseByPriceRange(low, high);
+	}
 	
 //	-----------------------------  ENROLL COURSE  ----------------------------------
 	
@@ -77,7 +87,6 @@ public class UserController {
 		
 		
 //		-----------------------------  CART ----------------------------------
-		
 
 		
 //	add to cart 
